@@ -1,6 +1,6 @@
 {
   "name": "Cobalt-PKG",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Source Of code3-dev",
   "main": "index.js",
   "repository": {
@@ -10,7 +10,7 @@
   "keywords": [
     "NodeJS"
   ],
-  "author": "Hossein Pira",
+  "author": "NeofetchNpc",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/NeofetchNpc/Cobalt-PKG/issues"
