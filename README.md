@@ -28,7 +28,7 @@ This library relies on Cobalt’s free API.
 To install the `cobalt-api` library, you need to use npm. Run the following command:
 
 ```bash
-npm install cobalt-api
+npm install ness-cobalt
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ npm install cobalt-api
 After installing the library, you can start using it in your Node.js project. Here's a basic example:
 
 ```javascript
-const CobaltAPI = require("cobalt-api");
+const CobaltAPI = require("ness-cobalt");
 
 const cobalt = new CobaltAPI("https://www.youtube.com/watch?v=OAr6AIvH9VY");
 
