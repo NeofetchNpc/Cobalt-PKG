@@ -1,6 +1,6 @@
 {
-  "name": "Cobalt-PKG",
-  "version": "0.1",
+  "name": "CobaltPKG",
+  "version": "1.0.0",
   "description": "Source Of code3-dev",
   "main": "index.js",
   "repository": {
