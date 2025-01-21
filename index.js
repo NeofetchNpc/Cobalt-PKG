@@ -1,33 +1,7 @@
 const axios = require("axios");
 const ytdl = require("ytdl-core");
 
-/**
- * Class CobaltAPI (Node.js YTDL Library)
- *
- * This class handles the configuration and sending of requests to a video downloading API.
- * It allows you to set various parameters for downloading videos or audio, such as video quality,
- * codec, audio format, and filename pattern. The class provides methods to enable or disable specific
- * features like audio-only downloads, full audio from TikTok videos, and metadata options.
- *
- * This library relies on Cobalt’s free API.
- *
- * Sources:
- * - Cobalt Code: https://github.com/imputnet/cobalt
- * - Cobalt Site: https://cobalt.tools
- * - Cobalt API Docs: https://github.com/imputnet/cobalt/blob/current/docs/api.md
- *
- * @version 1.0.0
- * @license MIT License
- * @link https://github.com/code3-dev/ytdl-node
- * @api https://github.com/imputnet/cobalt
- */
-
 class CobaltAPI {
-  /**
-   * Constructor initializes the class with a URL.
-   *
-   * @param {string} url The URL to be used in requests.
-   */
   constructor(url) {
     this.url = url;
     this.vCodec = "h264";
@@ -44,23 +18,9 @@ class CobaltAPI {
     this.acceptLanguage = null;
   }
 
-  /**
-   * Sets the video quality for downloads.
-   *
-   * @param {string} quality The desired video quality (e.g., 144, 720, max).
-   * @throws {Error} If the provided quality is not valid.
-   */
   setQuality(quality) {
     const allowedQualities = [
-      "max",
-      "2160",
-      "1440",
-      "1080",
-      "720",
-      "480",
-      "360",
-      "240",
-      "144",
+      "max", "2160", "1440", "1080", "720", "480", "360", "240", "144"
     ];
     if (!allowedQualities.includes(quality)) {
       throw new Error("Invalid video quality");
@@ -68,18 +28,6 @@ class CobaltAPI {
     this.vQuality = quality;
   }
 
-  /**
-   * Sets the filename pattern for downloaded files.
-   *
-   * Available patterns:
-   * - classic: Standard naming for files.
-   * - basic: Simplistic naming for files.
-   * - pretty: More descriptive naming for files.
-   * - nerdy: Detailed naming for files including additional metadata.
-   *
-   * @param {string} pattern The desired filename pattern.
-   * @throws {Error} If the provided pattern is not valid.
-   */
   setFilenamePattern(pattern) {
     const allowedPatterns = ["classic", "pretty", "basic", "nerdy"];
     if (!allowedPatterns.includes(pattern)) {
@@ -88,12 +36,6 @@ class CobaltAPI {
     this.filenamePattern = pattern;
   }
 
-  /**
-   * Sets the video codec for downloads.
-   *
-   * @param {string} codec The desired video codec (e.g., h264, av1, vp9).
-   * @throws {Error} If the provided codec is not valid.
-   */
   setVCodec(codec) {
     const allowedCodecs = ["h264", "av1", "vp9"];
     if (!allowedCodecs.includes(codec)) {
@@ -102,12 +44,6 @@ class CobaltAPI {
     this.vCodec = codec;
   }
 
-  /**
-   * Sets the audio format for downloads.
-   *
-   * @param {string} format The desired audio format (e.g., mp3, ogg, wav).
-   * @throws {Error} If the provided format is not valid.
-   */
   setAFormat(format) {
     const allowedFormats = ["best", "mp3", "ogg", "wav", "opus"];
     if (!allowedFormats.includes(format)) {
@@ -116,69 +52,38 @@ class CobaltAPI {
     this.aFormat = format;
   }
 
-  /**
-   * Sets the custom Accept-Language header value for requests.
-   *
-   * @param {string} language The custom Accept-Language header value.
-   */
   setAcceptLanguage(language) {
     this.acceptLanguage = language;
   }
 
-  /**
-   * Enables downloading only audio.
-   */
   enableAudioOnly() {
     this.isAudioOnly = true;
   }
 
-  /**
-   * Enables downloading the original sound from a TikTok video.
-   */
   enableTTFullAudio() {
     this.isTTFullAudio = true;
   }
 
-  /**
-   * Enables muting the audio track in video downloads.
-   */
   enableAudioMuted() {
     this.isAudioMuted = true;
   }
 
-  /**
-   * Enables using the Accept-Language header for YouTube video audio tracks.
-   */
   enableDubLang() {
     this.dubLang = true;
   }
 
-  /**
-   * Enables disabling file metadata.
-   */
   enableDisableMetadata() {
     this.disableMetadata = true;
   }
 
-  /**
-   * Enables converting Twitter gifs to .gif format.
-   */
   enableTwitterGif() {
     this.twitterGif = true;
   }
 
-  /**
-   * Enables preferring 1080p h265 videos for TikTok.
-   */
   enableTiktokH265() {
     this.tiktokH265 = true;
   }
 
-  /**
-   * Sends the configured request to the API and returns the response.
-   *
-   * @returns {Promise<Object>} A promise that resolves to an object containing the status and data of the response.
-   */
   async sendRequest() {
     const headers = {
       Accept: "application/json",
@@ -229,11 +134,6 @@ class CobaltAPI {
     }
   }
 
-  /**
-   * Fetches the available video qualities for a YouTube URL.
-   *
-   * @returns {Promise<Array>} A promise that resolves to an array of available video qualities.
-   */
   async getAvailableQualities() {
     if (!ytdl.validateURL(this.url)) {
       throw new Error("Invalid YouTube URL");
